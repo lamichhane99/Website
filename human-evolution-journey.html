@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Human Evolution Journey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --earth-dark:#1a1208;
+  --earth-mid:#2d1f0a;
+  --earth-warm:#3d2b10;
+  --earth-tan:#8b6b3d;
+  --earth-sand:#c4a265;
+  --earth-light:#e8d5b0;
+  --earth-pale:#f5edd8;
+  --accent-amber:#d4891a;
+  --accent-gold:#f0b429;
+  --accent-rust:#b85c2a;
+  --accent-sage:#5a7a4a;
+  --text-primary:#f0e8d5;
+  --text-secondary:#c4b08a;
+  --text-muted:#8a7455;
+  --border-color:rgba(196,162,101,0.2);
+  --card-bg:rgba(45,31,10,0.7);
+}
+
+html{scroll-behavior:smooth}
+body{
+  font-family:'Jost',sans-serif;
+  background:#0e0b05;
+  color:var(--text-primary);
+  overflow-x:hidden;
+  cursor:default;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--earth-dark)}
+::-webkit-scrollbar-thumb{background:var(--earth-tan);border-radius:3px}
+
+/* Navigation */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 3rem;height:64px;
+  background:rgba(14,11,5,0.85);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border-color);
+}
+.nav-brand{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.2rem;letter-spacing:0.08em;
+  color:var(--accent-gold);
+  font-weight:400;
+}
+.nav-links{display:flex;gap:2rem}
+.nav-links a{
+  color:var(--text-secondary);font-size:0.8rem;
+  text-decoration:none;letter-spacing:0.12em;text-transform:uppercase;
+  transition:color 0.3s;
+  font-weight:500;
+}
+.nav-links a:hover{color:var(--accent-gold)}
+.nav-links a.active{color:var(--accent-gold)}
+
+/* Sections */
+section{min-height:100vh;position:relative}
+
+/* ─────────────────── HERO ─────────────────── */
+#hero{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:6rem 2rem 4rem;
+  background:radial-gradient(ellipse at 50% 40%,#2d1f0a 0%,#0e0b05 70%);
+  overflow:hidden;
+  text-align:center;
+}
+.hero-particles{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;
+}
+.particle{
+  position:absolute;width:2px;height:2px;
+  background:var(--accent-gold);border-radius:50%;
+  opacity:0;animation:float-particle linear infinite;
+}
+@keyframes float-particle{
+  0%{opacity:0;transform:translateY(100vh) translateX(0)}
+  10%{opacity:0.6}
+  90%{opacity:0.4}
+  100%{opacity:0;transform:translateY(-10vh) translateX(30px)}
+}
+.skull-canvas{
+  width:220px;height:220px;
+  margin-bottom:2rem;
+  position:relative;
+}
+.skull-svg{
+  width:100%;height:100%;
+  animation:skull-rotate 20s linear infinite;
+  filter:drop-shadow(0 0 30px rgba(212,137,26,0.3));
+}
+@keyframes skull-rotate{
+  0%{transform:rotateY(0deg) scale(1)}
+  25%{transform:rotateY(15deg) scale(1.02)}
+  50%{transform:rotateY(0deg) scale(1)}
+  75%{transform:rotateY(-15deg) scale(1.02)}
+  100%{transform:rotateY(0deg) scale(1)}
+}
+@keyframes skull-float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}
+}
+.skull-container{animation:skull-float 6s ease-in-out infinite}
+
+.hero-eyebrow{
+  font-size:0.75rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--accent-amber);margin-bottom:1.5rem;
+  animation:fade-up 1s ease both;
+}
+h1.hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.8rem,7vw,5.5rem);
+  font-weight:300;line-height:1.1;
+  color:var(--earth-pale);
+  margin-bottom:1.5rem;
+  animation:fade-up 1s 0.2s ease both;
+}
+h1.hero-title span{color:var(--accent-gold);font-style:italic}
+.hero-sub{
+  font-size:1rem;color:var(--text-secondary);
+  max-width:550px;line-height:1.8;
+  margin-bottom:3rem;
+  animation:fade-up 1s 0.4s ease both;
+}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:0.75rem;
+  padding:0.9rem 2.5rem;
+  background:transparent;
+  border:1px solid var(--accent-gold);
+  color:var(--accent-gold);
+  font-family:'Jost',sans-serif;
+  font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;
+  text-decoration:none;
+  cursor:pointer;
+  transition:all 0.4s;
+  animation:fade-up 1s 0.6s ease both;
+  position:relative;overflow:hidden;
+}
+.hero-cta::before{
+  content:'';position:absolute;inset:0;
+  background:var(--accent-gold);
+  transform:translateX(-101%);
+  transition:transform 0.4s ease;
+  z-index:-1;
+}
+.hero-cta:hover{color:var(--earth-dark)}
+.hero-cta:hover::before{transform:translateX(0)}
+
+.hero-stats{
+  display:flex;gap:4rem;margin-top:5rem;
+  animation:fade-up 1s 0.8s ease both;
+}
+.hero-stat{text-align:center}
+.hero-stat .num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem;color:var(--accent-gold);font-weight:300;
+}
+.hero-stat .label{
+  font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--text-muted);margin-top:0.25rem;
+}
+.scroll-hint{
+  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:0.5rem;
+  color:var(--text-muted);font-size:0.7rem;letter-spacing:0.15em;
+  text-transform:uppercase;animation:bounce 2s ease infinite;
+}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+
+/* ─────────────────── TIMELINE ─────────────────── */
+#timeline{
+  padding:8rem 2rem;
+  background:linear-gradient(180deg,#0e0b05 0%,#150f04 50%,#0e0b05 100%);
+}
+.section-header{text-align:center;margin-bottom:5rem}
+.section-tag{
+  font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--accent-amber);margin-bottom:1rem;display:block;
+}
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,5vw,3.5rem);
+  font-weight:300;color:var(--earth-pale);
+  margin-bottom:1rem;
+}
+.section-desc{
+  color:var(--text-secondary);font-size:0.95rem;
+  max-width:500px;margin:0 auto;line-height:1.8;
+}
+
+.timeline-container{
+  max-width:1100px;margin:0 auto;
+  position:relative;
+}
+.timeline-line{
+  position:absolute;left:50%;top:0;bottom:0;
+  width:1px;background:linear-gradient(180deg,transparent,var(--earth-tan),transparent);
+  transform:translateX(-50%);
+}
+.timeline-items{display:flex;flex-direction:column;gap:0}
+
+.tl-item{
+  display:grid;grid-template-columns:1fr 60px 1fr;
+  align-items:start;margin-bottom:1px;
+  opacity:0;transform:translateY(30px);
+  transition:opacity 0.6s ease,transform 0.6s ease;
+}
+.tl-item.visible{opacity:1;transform:translateY(0)}
+.tl-item:nth-child(odd) .tl-card{grid-column:1}
+.tl-item:nth-child(odd) .tl-center{grid-column:2}
+.tl-item:nth-child(odd) .tl-empty{grid-column:3}
+.tl-item:nth-child(even) .tl-empty{grid-column:1}
+.tl-item:nth-child(even) .tl-center{grid-column:2}
+.tl-item:nth-child(even) .tl-card{grid-column:3}
+
+.tl-center{
+  display:flex;flex-direction:column;align-items:center;
+  padding:2rem 0;
+  position:relative;z-index:1;
+}
+.tl-dot{
+  width:14px;height:14px;border-radius:50%;
+  border:2px solid var(--accent-gold);
+  background:var(--earth-dark);
+  flex-shrink:0;cursor:pointer;
+  transition:all 0.3s;
+  position:relative;
+}
+.tl-dot::after{
+  content:'';position:absolute;inset:-5px;
+  border-radius:50%;background:var(--accent-gold);
+  opacity:0;transition:opacity 0.3s;
+  z-index:-1;
+}
+.tl-dot:hover,.tl-dot.active{
+  background:var(--accent-gold);
+  box-shadow:0 0 20px rgba(240,180,41,0.4);
+}
+.tl-time{
+  font-size:0.65rem;letter-spacing:0.1em;
+  color:var(--text-muted);margin-top:0.5rem;
+  text-align:center;white-space:nowrap;
+}
+
+.tl-card{
+  padding:2rem;
+  cursor:pointer;
+  transition:all 0.3s;
+  position:relative;
+}
+.tl-item:nth-child(odd) .tl-card{padding-right:3rem;text-align:right}
+.tl-item:nth-child(even) .tl-card{padding-left:3rem;text-align:left}
+
+.tl-card:hover .tl-card-inner{
+  background:rgba(61,43,16,0.6);
+  border-color:rgba(196,162,101,0.4);
+}
+.tl-card-inner{
+  background:rgba(45,31,10,0.4);
+  border:1px solid var(--border-color);
+  border-radius:2px;
+  padding:1.5rem;
+  transition:all 0.3s;
+}
+.tl-species{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.4rem;color:var(--earth-pale);
+  font-weight:400;margin-bottom:0.25rem;
+}
+.tl-period{
+  font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--accent-amber);margin-bottom:1rem;
+}
+.tl-desc{
+  font-size:0.85rem;color:var(--text-secondary);
+  line-height:1.7;margin-bottom:1rem;
+}
+.tl-tags{display:flex;flex-wrap:wrap;gap:0.4rem;justify-content:flex-end}
+.tl-item:nth-child(even) .tl-tags{justify-content:flex-start}
+.tl-tag{
+  font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;
+  padding:0.2rem 0.6rem;
+  border:1px solid var(--border-color);
+  color:var(--text-muted);
+}
+.tl-avatar{
+  width:56px;height:56px;margin-bottom:1rem;
+  border-radius:50%;background:var(--earth-warm);
+  border:2px solid var(--border-color);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;overflow:hidden;
+}
+
+/* Detail panel */
+.detail-overlay{
+  position:fixed;inset:0;z-index:500;
+  background:rgba(0,0,0,0.8);
+  backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;
+  padding:2rem;
+  opacity:0;pointer-events:none;transition:opacity 0.4s;
+}
+.detail-overlay.open{opacity:1;pointer-events:all}
+.detail-panel{
+  background:var(--earth-mid);
+  border:1px solid rgba(196,162,101,0.3);
+  max-width:700px;width:100%;
+  max-height:85vh;overflow-y:auto;
+  padding:3rem;
+  position:relative;
+  transform:translateY(20px);
+  transition:transform 0.4s;
+}
+.detail-overlay.open .detail-panel{transform:translateY(0)}
+.detail-close{
+  position:absolute;top:1.5rem;right:1.5rem;
+  background:none;border:none;color:var(--text-muted);
+  font-size:1.5rem;cursor:pointer;
+  transition:color 0.3s;
+  line-height:1;
+  font-family:'Jost',sans-serif;
+}
+.detail-close:hover{color:var(--accent-gold)}
+.detail-species{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.5rem;color:var(--earth-pale);
+  font-weight:300;margin-bottom:0.25rem;
+}
+.detail-period{
+  font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--accent-amber);margin-bottom:2rem;
+}
+.detail-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;
+  margin-bottom:2rem;
+}
+.detail-stat{
+  background:rgba(26,18,8,0.6);
+  padding:1rem;border:1px solid var(--border-color);
+  text-align:center;
+}
+.detail-stat .val{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.6rem;color:var(--accent-gold);margin-bottom:0.25rem;
+}
+.detail-stat .lbl{
+  font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--text-muted);
+}
+.detail-body{font-size:0.9rem;color:var(--text-secondary);line-height:1.8;margin-bottom:1.5rem}
+.detail-facts h4{
+  font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--accent-amber);margin-bottom:1rem;
+}
+.detail-fact{
+  display:flex;gap:0.75rem;margin-bottom:0.75rem;
+  font-size:0.85rem;color:var(--text-secondary);line-height:1.6;
+}
+.detail-fact::before{content:'◆';color:var(--accent-amber);flex-shrink:0;font-size:0.5rem;margin-top:0.35rem}
+.skull-illustration{
+  width:100%;max-width:200px;margin:0 auto 2rem;
+  display:block;
+}
+
+/* ─────────────────── COMPARISON ─────────────────── */
+#comparison{
+  padding:8rem 2rem;
+  background:linear-gradient(180deg,#0e0b05 0%,#1a1208 100%);
+}
+.comparison-wrapper{max-width:900px;margin:0 auto}
+.compare-selects{
+  display:grid;grid-template-columns:1fr auto 1fr;
+  gap:1rem;align-items:center;margin-bottom:3rem;
+}
+.compare-select-label{font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem}
+select.species-select{
+  width:100%;padding:0.75rem 1rem;
+  background:rgba(45,31,10,0.8);
+  border:1px solid var(--border-color);
+  color:var(--text-primary);
+  font-family:'Jost',sans-serif;font-size:0.9rem;
+  cursor:pointer;outline:none;
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23c4a265'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 1rem center;
+}
+select.species-select:focus{border-color:var(--accent-gold)}
+.vs-badge{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem;color:var(--earth-tan);
+  text-align:center;font-style:italic;
+}
+.compare-panels{
+  display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;
+}
+.compare-panel{
+  background:rgba(45,31,10,0.4);
+  border:1px solid var(--border-color);
+  padding:2rem;
+}
+.compare-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.8rem;color:var(--earth-pale);
+  margin-bottom:0.25rem;
+}
+.compare-period{font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent-amber);margin-bottom:1.5rem}
+
+.compare-bar-wrap{margin-bottom:1.2rem}
+.compare-bar-label{
+  display:flex;justify-content:space-between;
+  font-size:0.75rem;margin-bottom:0.4rem;
+}
+.compare-bar-label .name{color:var(--text-secondary);letter-spacing:0.05em}
+.compare-bar-label .val{color:var(--accent-gold)}
+.compare-bar-track{height:4px;background:rgba(255,255,255,0.08);position:relative}
+.compare-bar-fill{
+  height:100%;background:linear-gradient(90deg,var(--accent-rust),var(--accent-gold));
+  transition:width 0.8s ease;
+  width:0;
+}
+.compare-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:0.6rem 0;border-bottom:1px solid rgba(255,255,255,0.05);
+  font-size:0.82rem;
+}
+.compare-row .label{color:var(--text-muted)}
+.compare-row .value{color:var(--text-secondary)}
+
+/* ─────────────────── MIGRATION ─────────────────── */
+#migration{
+  padding:8rem 2rem;
+  background:linear-gradient(180deg,#1a1208 0%,#0e0b05 100%);
+}
+.map-container{
+  max-width:900px;margin:0 auto;
+  position:relative;
+}
+.map-controls{
+  display:flex;gap:1rem;margin-bottom:2rem;
+  flex-wrap:wrap;
+}
+.map-btn{
+  padding:0.5rem 1.2rem;
+  background:transparent;border:1px solid var(--border-color);
+  color:var(--text-secondary);font-family:'Jost',sans-serif;
+  font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;
+  cursor:pointer;transition:all 0.3s;
+}
+.map-btn.active,.map-btn:hover{
+  border-color:var(--accent-gold);
+  color:var(--accent-gold);
+  background:rgba(212,137,26,0.08);
+}
+#world-map{width:100%;border:1px solid var(--border-color)}
+.migration-info{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:1rem;margin-top:2rem;
+}
+.migration-card{
+  background:rgba(45,31,10,0.4);
+  border:1px solid var(--border-color);
+  padding:1.2rem;
+}
+.migration-card .route-name{
+  font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--accent-amber);margin-bottom:0.5rem;
+}
+.migration-card .route-desc{font-size:0.82rem;color:var(--text-secondary);line-height:1.6}
+.route-dot{
+  display:inline-block;width:8px;height:8px;
+  border-radius:50%;margin-right:0.5rem;
+}
+
+/* ─────────────────── MILESTONES ─────────────────── */
+#milestones{
+  padding:8rem 2rem;
+  background:linear-gradient(180deg,#0e0b05 0%,#150f04 100%);
+}
+.milestones-grid{
+  max-width:1000px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1.5rem;
+}
+.milestone-card{
+  background:rgba(45,31,10,0.4);
+  border:1px solid var(--border-color);
+  padding:2rem;
+  transition:all 0.4s;
+  position:relative;overflow:hidden;
+  cursor:default;
+}
+.milestone-card::before{
+  content:'';position:absolute;
+  top:-2px;left:-2px;right:-2px;
+  height:2px;background:var(--accent-gold);
+  transform:scaleX(0);transition:transform 0.4s;
+  transform-origin:left;
+}
+.milestone-card:hover{
+  background:rgba(61,43,16,0.6);
+  border-color:rgba(196,162,101,0.35);
+  transform:translateY(-4px);
+}
+.milestone-card:hover::before{transform:scaleX(1)}
+.milestone-icon{font-size:2.5rem;margin-bottom:1rem;line-height:1}
+.milestone-year{
+  font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--accent-amber);margin-bottom:0.75rem;
+}
+.milestone-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem;color:var(--earth-pale);
+  margin-bottom:0.75rem;
+}
+.milestone-desc{font-size:0.85rem;color:var(--text-secondary);line-height:1.7;margin-bottom:1rem}
+.milestone-fact{
+  font-size:0.78rem;color:var(--text-muted);line-height:1.6;
+  padding-top:1rem;border-top:1px solid var(--border-color);
+  font-style:italic;
+}
+
+/* ─────────────────── FOSSIL GALLERY ─────────────────── */
+#fossils{
+  padding:8rem 2rem;
+  background:linear-gradient(180deg,#150f04 0%,#0e0b05 100%);
+}
+.fossils-grid{
+  max-width:1000px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:1rem;
+}
+.fossil-card{
+  background:rgba(45,31,10,0.4);
+  border:1px solid var(--border-color);
+  cursor:pointer;transition:all 0.3s;
+  overflow:hidden;
+  position:relative;
+}
+.fossil-card:hover{
+  border-color:rgba(196,162,101,0.5);
+  transform:scale(1.02);
+}
+.fossil-img{
+  width:100%;aspect-ratio:1;
+  background:var(--earth-warm);
+  display:flex;align-items:center;justify-content:center;
+  font-size:4rem;overflow:hidden;
+  position:relative;
+}
+.fossil-img svg{width:70%;height:70%;opacity:0.8}
+.fossil-overlay{
+  position:absolute;inset:0;
+  background:rgba(0,0,0,0.5);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity 0.3s;
+  font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--accent-gold);
+}
+.fossil-card:hover .fossil-overlay{opacity:1}
+.fossil-info{padding:1rem}
+.fossil-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem;color:var(--earth-pale);
+  margin-bottom:0.25rem;
+}
+.fossil-location{font-size:0.72rem;color:var(--text-muted);margin-bottom:0.25rem}
+.fossil-age{font-size:0.72rem;color:var(--accent-amber)}
+
+/* ─────────────────── ABOUT ─────────────────── */
+#about{
+  padding:8rem 2rem;
+  background:radial-gradient(ellipse at 50% 50%,#2d1f0a 0%,#0e0b05 70%);
+}
+.about-inner{
+  max-width:700px;margin:0 auto;text-align:center;
+}
+.about-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.5rem,4vw,2.5rem);
+  color:var(--earth-pale);font-weight:300;
+  line-height:1.5;margin-bottom:3rem;
+  font-style:italic;
+}
+.about-body{font-size:0.92rem;color:var(--text-secondary);line-height:1.9;margin-bottom:2rem;text-align:left}
+.about-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1rem;margin-top:3rem;
+  text-align:left;
+}
+.about-item{
+  padding:1.5rem;
+  background:rgba(45,31,10,0.4);
+  border:1px solid var(--border-color);
+}
+.about-item h4{
+  font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--accent-amber);margin-bottom:0.75rem;
+}
+.about-item p{font-size:0.82rem;color:var(--text-secondary);line-height:1.7}
+
+/* ─────────────────── FOOTER ─────────────────── */
+footer{
+  background:#080603;
+  border-top:1px solid var(--border-color);
+  padding:3rem 2rem;text-align:center;
+}
+footer p{font-size:0.78rem;color:var(--text-muted)}
+footer .footer-brand{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.2rem;color:var(--accent-gold);
+  margin-bottom:0.75rem;
+  display:block;
+}
+
+/* ─────────────────── ANIMATIONS ─────────────────── */
+@keyframes fade-up{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.reveal{opacity:0;transform:translateY(30px);transition:all 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ─────────────────── FOSSIL MODAL ─────────────────── */
+.fossil-modal{
+  position:fixed;inset:0;z-index:600;
+  background:rgba(0,0,0,0.85);
+  backdrop-filter:blur(10px);
+  display:flex;align-items:center;justify-content:center;
+  padding:2rem;
+  opacity:0;pointer-events:none;transition:opacity 0.4s;
+}
+.fossil-modal.open{opacity:1;pointer-events:all}
+.fossil-modal-inner{
+  background:var(--earth-mid);
+  border:1px solid rgba(196,162,101,0.3);
+  max-width:500px;width:100%;
+  padding:3rem;position:relative;
+  transform:scale(0.95);transition:transform 0.4s;
+}
+.fossil-modal.open .fossil-modal-inner{transform:scale(1)}
+.fossil-modal-close{
+  position:absolute;top:1rem;right:1.5rem;
+  background:none;border:none;color:var(--text-muted);
+  font-size:1.5rem;cursor:pointer;transition:color 0.3s;
+  font-family:'Jost',sans-serif;
+}
+.fossil-modal-close:hover{color:var(--accent-gold)}
+.fm-svg{
+  width:120px;height:120px;
+  margin:0 auto 1.5rem;display:block;
+  background:rgba(26,18,8,0.6);
+  border:1px solid var(--border-color);
+  padding:1rem;
+}
+.fm-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem;color:var(--earth-pale);
+  margin-bottom:0.25rem;
+}
+.fm-meta{display:flex;gap:2rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.fm-meta span{font-size:0.75rem;color:var(--text-muted)}
+.fm-meta span strong{color:var(--accent-amber);font-weight:400}
+.fm-desc{font-size:0.88rem;color:var(--text-secondary);line-height:1.8}
+
+/* Responsive */
+@media(max-width:768px){
+  nav{padding:0 1.5rem}
+  .nav-links{gap:1.2rem}
+  .nav-links a{font-size:0.72rem}
+  .timeline-line{left:30px}
+  .timeline-items .tl-item{
+    grid-template-columns:60px 1fr;
+    grid-template-rows:auto;
+  }
+  .tl-item:nth-child(odd) .tl-card,
+  .tl-item:nth-child(even) .tl-card{
+    grid-column:2;text-align:left;padding:1rem 1rem 1rem 0.5rem;
+  }
+  .tl-item:nth-child(odd) .tl-tags,
+  .tl-item:nth-child(even) .tl-tags{justify-content:flex-start}
+  .tl-center{grid-column:1;padding:1.5rem 0;align-items:flex-end}
+  .tl-empty{display:none}
+  .compare-panels{grid-template-columns:1fr}
+  .compare-selects{grid-template-columns:1fr;gap:0.5rem}
+  .vs-badge{display:none}
+  .about-grid{grid-template-columns:1fr}
+  .hero-stats{gap:2rem}
+  .detail-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Human Evolution Journey</div>
+  <div class="nav-links">
+    <a href="#hero">Home</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#migration">Migration</a>
+    <a href="#fossils">Fossils</a>
+    <a href="#about">About</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-particles" id="particles"></div>
+
+  <p class="hero-eyebrow">A Journey Through 7 Million Years</p>
+
+  <div class="skull-container">
+    <div class="skull-canvas">
+      <svg class="skull-svg" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="skullGrad" cx="40%" cy="30%" r="70%">
+            <stop offset="0%" stop-color="#e8d5b0"/>
+            <stop offset="40%" stop-color="#c4a265"/>
+            <stop offset="100%" stop-color="#5a3d1a"/>
+          </radialGradient>
+          <radialGradient id="skullGrad2" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#3d2b10" stop-opacity="0"/>
+            <stop offset="100%" stop-color="#0e0b05" stop-opacity="0.6"/>
+          </radialGradient>
+        </defs>
+        <!-- Cranium -->
+        <ellipse cx="100" cy="80" rx="72" ry="68" fill="url(#skullGrad)"/>
+        <ellipse cx="100" cy="80" rx="72" ry="68" fill="url(#skullGrad2)"/>
+        <!-- Forehead slope -->
+        <path d="M40 85 Q45 30 100 22 Q155 30 160 85" fill="url(#skullGrad)" stroke="none"/>
+        <!-- Brow ridge -->
+        <path d="M50 92 Q75 82 100 84 Q125 82 150 92" fill="none" stroke="#8b6b3d" stroke-width="3" stroke-linecap="round"/>
+        <!-- Eye sockets -->
+        <ellipse cx="72" cy="105" rx="22" ry="18" fill="#1a1208" stroke="#8b6b3d" stroke-width="1.5"/>
+        <ellipse cx="128" cy="105" rx="22" ry="18" fill="#1a1208" stroke="#8b6b3d" stroke-width="1.5"/>
+        <!-- Nasal cavity -->
+        <path d="M90 128 Q100 120 110 128 Q110 142 100 145 Q90 142 90 128Z" fill="#1a1208" stroke="#8b6b3d" stroke-width="1"/>
+        <!-- Cheekbones -->
+        <path d="M42 110 Q30 120 35 140 Q45 148 60 145" fill="none" stroke="#8b6b3d" stroke-width="2" stroke-linecap="round"/>
+        <path d="M158 110 Q170 120 165 140 Q155 148 140 145" fill="none" stroke="#8b6b3d" stroke-width="2" stroke-linecap="round"/>
+        <!-- Upper jaw / teeth area -->
+        <path d="M62 148 Q100 155 138 148 L138 170 Q100 178 62 170Z" fill="url(#skullGrad)"/>
+        <!-- Teeth outline -->
+        <path d="M68 155 L68 168 M80 157 L80 170 M92 158 L92 171 M100 158 L100 172 M108 158 L108 171 M120 157 L120 170 M132 155 L132 168" stroke="#8b6b3d" stroke-width="1" fill="none"/>
+        <path d="M68 155 Q100 150 132 155" fill="none" stroke="#8b6b3d" stroke-width="1.5"/>
+        <path d="M68 168 Q100 172 132 168" fill="none" stroke="#8b6b3d" stroke-width="1.5"/>
+        <!-- Lower jaw -->
+        <path d="M60 170 Q50 178 52 192 Q60 205 100 208 Q140 205 148 192 Q150 178 140 170" fill="url(#skullGrad)" stroke="#8b6b3d" stroke-width="1.5"/>
+        <!-- Lower teeth -->
+        <path d="M68 175 Q100 170 132 175 L132 188 Q100 192 68 188Z" fill="url(#skullGrad)"/>
+        <path d="M68 175 Q100 171 132 175" fill="none" stroke="#8b6b3d" stroke-width="1"/>
+        <path d="M70 175 L70 188 M80 174 L80 188 M90 173 L90 188 M100 173 L100 188 M110 173 L110 188 M120 174 L120 188 M130 175 L130 188" stroke="#8b6b3d" stroke-width="1" fill="none"/>
+        <!-- Temporal line -->
+        <path d="M45 65 Q40 80 42 100" fill="none" stroke="rgba(139,107,61,0.4)" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <path d="M155 65 Q160 80 158 100" fill="none" stroke="rgba(139,107,61,0.4)" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <!-- Sutures -->
+        <path d="M100 22 Q103 50 100 78" fill="none" stroke="rgba(90,61,26,0.5)" stroke-width="1" stroke-dasharray="3 4"/>
+        <path d="M45 70 Q70 68 100 69 Q130 68 155 70" fill="none" stroke="rgba(90,61,26,0.4)" stroke-width="1" stroke-dasharray="3 4"/>
+        <!-- Shine -->
+        <ellipse cx="78" cy="52" rx="14" ry="10" fill="rgba(240,220,180,0.15)" transform="rotate(-20,78,52)"/>
+      </svg>
+    </div>
+  </div>
+
+  <h1 class="hero-title">The Story of<br><span>Human Evolution</span></h1>
+  <p class="hero-sub">From the forests of Africa to every corner of the globe — explore 7 million years of our ancestors' remarkable journey through time.</p>
+  <a href="#timeline" class="hero-cta">Start Exploring ↓</a>
+
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">7M+</div><div class="label">Years of Evolution</div></div>
+    <div class="hero-stat"><div class="num">20+</div><div class="label">Known Species</div></div>
+    <div class="hero-stat"><div class="num">5</div><div class="label">Continents Reached</div></div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll to explore</span>
+    <svg width="16" height="20" viewBox="0 0 16 20" fill="none"><rect x="5.5" y="0.5" width="5" height="9" rx="2.5" stroke="currentColor"/><line x1="8" y1="12" x2="8" y2="19" stroke="currentColor" stroke-linecap="round"/><path d="M5 16l3 3 3-3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="section-header reveal">
+    <span class="section-tag">7 Million Years</span>
+    <h2 class="section-title">Evolution Timeline</h2>
+    <p class="section-desc">Click any species to discover their story — from the earliest bipeds to modern humans.</p>
+  </div>
+
+  <div class="timeline-container">
+    <div class="timeline-line"></div>
+    <div class="timeline-items" id="timeline-items"></div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section id="comparison">
+  <div class="section-header reveal">
+    <span class="section-tag">Side by Side</span>
+    <h2 class="section-title">Species Comparison</h2>
+    <p class="section-desc">Compare any two species across key evolutionary traits.</p>
+  </div>
+
+  <div class="comparison-wrapper">
+    <div class="compare-selects">
+      <div>
+        <div class="compare-select-label">First Species</div>
+        <select class="species-select" id="select-a" onchange="updateComparison()"></select>
+      </div>
+      <div class="vs-badge">vs</div>
+      <div>
+        <div class="compare-select-label">Second Species</div>
+        <select class="species-select" id="select-b" onchange="updateComparison()"></select>
+      </div>
+    </div>
+    <div class="compare-panels" id="compare-panels"></div>
+  </div>
+</section>
+
+<!-- MIGRATION -->
+<section id="migration">
+  <div class="section-header reveal">
+    <span class="section-tag">Out of Africa</span>
+    <h2 class="section-title">Human Migration Map</h2>
+    <p class="section-desc">How Homo sapiens spread from Africa to populate every continent on Earth.</p>
+  </div>
+
+  <div class="map-container">
+    <div class="map-controls">
+      <button class="map-btn active" onclick="showRoute('all',this)">All Routes</button>
+      <button class="map-btn" onclick="showRoute('africa',this)">Africa Origin</button>
+      <button class="map-btn" onclick="showRoute('asia',this)">Into Asia</button>
+      <button class="map-btn" onclick="showRoute('europe',this)">Into Europe</button>
+      <button class="map-btn" onclick="showRoute('americas',this)">The Americas</button>
+      <button class="map-btn" onclick="showRoute('australia',this)">Australia</button>
+    </div>
+
+    <svg id="world-map" viewBox="0 0 900 450" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="marrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+      <rect width="900" height="450" fill="#0d1117"/>
+
+      <!-- Ocean background -->
+      <rect width="900" height="450" fill="#0a1520" rx="2"/>
+
+      <!-- Simplified continents -->
+      <!-- Africa -->
+      <path d="M420 90 L470 85 L490 95 L500 115 L505 140 L510 180 L508 220 L500 255 L490 280 L475 300 L455 310 L440 305 L425 290 L415 265 L408 240 L405 210 L402 180 L400 150 L405 120 L410 100Z" fill="#2a3d1a" stroke="#3a5525" stroke-width="0.8" class="continent" data-name="Africa" id="cont-africa"/>
+
+      <!-- Europe -->
+      <path d="M415 45 L440 40 L455 50 L460 65 L445 75 L430 78 L415 72 L405 60Z" fill="#1a2d3a" stroke="#253d50" stroke-width="0.8" class="continent"/>
+      <path d="M440 40 L465 38 L475 48 L465 58 L450 60 L440 55Z" fill="#1a2d3a" stroke="#253d50" stroke-width="0.8"/>
+
+      <!-- Asia -->
+      <path d="M480 40 L560 35 L620 45 L650 65 L660 90 L655 120 L640 140 L610 150 L580 145 L555 135 L530 130 L510 120 L490 105 L480 85 L475 65Z" fill="#1a2d3a" stroke="#253d50" stroke-width="0.8" class="continent" id="cont-asia"/>
+      <!-- Indian subcontinent -->
+      <path d="M560 145 L585 145 L590 170 L575 190 L560 185 L548 165Z" fill="#1a2d3a" stroke="#253d50" stroke-width="0.8"/>
+      <!-- Southeast Asia -->
+      <path d="M620 145 L650 148 L660 165 L645 175 L630 170 L615 160Z" fill="#1a2d3a" stroke="#253d50" stroke-width="0.8"/>
+
+      <!-- North America -->
+      <path d="M65 40 L120 35 L155 50 L170 75 L175 100 L165 130 L150 155 L130 175 L110 185 L90 175 L70 155 L55 130 L50 100 L55 70Z" fill="#1a2d3a" stroke="#253d50" stroke-width="0.8" class="continent" id="cont-namerica"/>
+      <!-- Central America -->
+      <path d="M150 175 L160 200 L155 220 L145 215 L140 195Z" fill="#1a2d3a" stroke="#253d50" stroke-width="0.8"/>
+
+      <!-- South America -->
+      <path d="M145 220 L185 215 L210 230 L220 255 L225 290 L215 320 L200 345 L180 360 L160 355 L145 335 L135 305 L130 270 L135 245Z" fill="#1a2d3a" stroke="#253d50" stroke-width="0.8" class="continent" id="cont-samerica"/>
+
+      <!-- Australia -->
+      <path d="M690 230 L740 225 L760 240 L765 265 L755 285 L730 295 L705 288 L690 270 L685 250Z" fill="#1a2d3a" stroke="#253d50" stroke-width="0.8" class="continent" id="cont-australia"/>
+
+      <!-- Origin point: East Africa -->
+      <circle cx="460" cy="200" r="8" fill="#f0b429" opacity="0.9" id="origin-dot"/>
+      <circle cx="460" cy="200" r="16" fill="none" stroke="#f0b429" stroke-width="1" opacity="0.5">
+        <animate attributeName="r" values="8;20;8" dur="3s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.5;0;0.5" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      <text x="468" y="196" fill="#f0b429" font-size="9" font-family="Jost,sans-serif" font-weight="500">Origin ~300,000 BP</text>
+
+      <!-- Migration routes (paths with animated strokes) -->
+      <!-- Route 1: Africa to Middle East / Asia (60,000 BP) -->
+      <path id="route-asia" d="M460 200 Q470 160 480 130 Q510 100 560 90 Q620 80 650 90" fill="none" stroke="#d4891a" stroke-width="2" stroke-dasharray="8 4" stroke-linecap="round" marker-end="url(#marrow)" class="migration-route route-asia" opacity="0.9">
+        <animate attributeName="stroke-dashoffset" values="0;-60" dur="2s" repeatCount="indefinite"/>
+      </path>
+
+      <!-- Route 2: Asia to Europe (45,000 BP) -->
+      <path id="route-europe" d="M480 100 Q465 85 455 72 Q440 60 435 55" fill="none" stroke="#5a9fd4" stroke-width="2" stroke-dasharray="8 4" stroke-linecap="round" marker-end="url(#marrow)" class="migration-route route-europe" opacity="0.9">
+        <animate attributeName="stroke-dashoffset" values="0;-60" dur="2s" repeatCount="indefinite"/>
+      </path>
+
+      <!-- Route 3: Asia to Australia (50,000 BP) -->
+      <path id="route-australia" d="M650 160 Q660 185 670 200 Q680 215 692 235" fill="none" stroke="#5ab85a" stroke-width="2" stroke-dasharray="8 4" stroke-linecap="round" marker-end="url(#marrow)" class="migration-route route-australia" opacity="0.9">
+        <animate attributeName="stroke-dashoffset" values="0;-60" dur="2s" repeatCount="indefinite"/>
+      </path>
+
+      <!-- Route 4: Asia to Americas (15,000-20,000 BP) via Beringia -->
+      <path id="route-americas" d="M655 50 Q690 42 720 40 Q760 38 790 42 Q820 46 840 50 L840 50 Q810 60 780 65 Q720 70 680 70" fill="none" stroke="none"/>
+      <path d="M655 50 Q680 42 710 40 Q740 38 760 42 Q790 46 810 50 Q790 55 770 58 Q730 62 700 60 Q670 60 160 80" fill="none" stroke="#d45a5a" stroke-width="2" stroke-dasharray="8 4" stroke-linecap="round" marker-end="url(#marrow)" class="migration-route route-americas" opacity="0.9">
+        <animate attributeName="stroke-dashoffset" values="0;-60" dur="2s" repeatCount="indefinite"/>
+      </path>
+
+      <!-- Route 5: Americas south -->
+      <path d="M160 80 Q155 130 152 175 Q150 200 152 225 Q150 270 160 310" fill="none" stroke="#d45a5a" stroke-width="2" stroke-dasharray="8 4" stroke-linecap="round" marker-end="url(#marrow)" class="migration-route route-americas" opacity="0.9">
+        <animate attributeName="stroke-dashoffset" values="0;-60" dur="2s" repeatCount="indefinite"/>
+      </path>
+
+      <!-- Route 6: Africa internal -->
+      <path id="route-africa" d="M455 200 Q445 235 442 265 Q440 285 442 300" fill="none" stroke="#c4a265" stroke-width="2" stroke-dasharray="8 4" stroke-linecap="round" marker-end="url(#marrow)" class="migration-route route-africa" opacity="0.9">
+        <animate attributeName="stroke-dashoffset" values="0;-60" dur="2s" repeatCount="indefinite"/>
+      </path>
+
+      <!-- Destination markers -->
+      <circle cx="650" cy="90" r="5" fill="#d4891a" class="dest-marker route-asia"/>
+      <circle cx="435" cy="55" r="5" fill="#5a9fd4" class="dest-marker route-europe"/>
+      <circle cx="720" cy="255" r="5" fill="#5ab85a" class="dest-marker route-australia"/>
+      <circle cx="90" cy="120" r="5" fill="#d45a5a" class="dest-marker route-americas"/>
+      <circle cx="170" cy="290" r="5" fill="#d45a5a" class="dest-marker route-americas"/>
+      <circle cx="442" cy="300" r="5" fill="#c4a265" class="dest-marker route-africa"/>
+
+      <!-- Labels -->
+      <text x="660" y="88" fill="#d4891a" font-size="8" font-family="Jost,sans-serif" class="dest-marker route-asia">Asia ~60,000 BP</text>
+      <text x="395" y="50" fill="#5a9fd4" font-size="8" font-family="Jost,sans-serif" class="dest-marker route-europe">Europe ~45,000 BP</text>
+      <text x="695" y="253" fill="#5ab85a" font-size="8" font-family="Jost,sans-serif" class="dest-marker route-australia">Australia ~50,000 BP</text>
+      <text x="55" y="115" fill="#d45a5a" font-size="8" font-family="Jost,sans-serif" class="dest-marker route-americas">Americas ~15,000 BP</text>
+    </svg>
+
+    <div class="migration-info">
+      <div class="migration-card">
+        <div class="route-name"><span class="route-dot" style="background:#d4891a"></span>Out of Africa</div>
+        <div class="route-desc">~60,000–70,000 years ago, modern humans began migrating out of Africa through the Arabian Peninsula into Asia.</div>
+      </div>
+      <div class="migration-card">
+        <div class="route-name"><span class="route-dot" style="background:#5a9fd4"></span>Reaching Europe</div>
+        <div class="route-desc">~45,000 years ago, Homo sapiens entered Europe, eventually displacing Neanderthals over thousands of years.</div>
+      </div>
+      <div class="migration-card">
+        <div class="route-name"><span class="route-dot" style="background:#5ab85a"></span>Into Australia</div>
+        <div class="route-desc">~50,000 years ago, humans reached Australia via a southern coastal route, becoming the ancestors of Aboriginal Australians.</div>
+      </div>
+      <div class="migration-card">
+        <div class="route-name"><span class="route-dot" style="background:#d45a5a"></span>The Americas</div>
+        <div class="route-desc">~15,000–20,000 years ago, humans crossed from Siberia to Alaska via the Bering land bridge and spread throughout the Americas.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MILESTONES -->
+<section id="milestones">
+  <div class="section-header reveal">
+    <span class="section-tag">Defining Moments</span>
+    <h2 class="section-title">Evolution Milestones</h2>
+    <p class="section-desc">The key innovations that shaped the human story.</p>
+  </div>
+  <div class="milestones-grid" id="milestones-grid"></div>
+</section>
+
+<!-- FOSSILS -->
+<section id="fossils">
+  <div class="section-header reveal">
+    <span class="section-tag">Physical Evidence</span>
+    <h2 class="section-title">Fossil Gallery</h2>
+    <p class="section-desc">Click any fossil to explore its discovery and significance.</p>
+  </div>
+  <div class="fossils-grid" id="fossils-grid"></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner reveal">
+    <p class="about-quote">"To understand who we are, we must first understand where we came from."</p>
+    <p class="about-body">Human evolution is the lengthy process of change by which people originated from apelike ancestors. Scientific evidence shows that the physical and behavioral traits shared by all people originated from apelike ancestors and evolved over a period of approximately 6 million years.</p>
+    <p class="about-body">One of the earliest defining human traits, bipedalism — the ability to walk on two legs — evolved over 4 million years ago. Other important human characteristics, such as a large and complex brain, the ability to make and use tools, and the capacity for language, developed more recently.</p>
+    <div class="about-grid">
+      <div class="about-item">
+        <h4>Genetic Evidence</h4>
+        <p>DNA analysis has confirmed that all modern humans share a common ancestor who lived in Africa approximately 300,000 years ago. We share 99.9% of our DNA with each other.</p>
+      </div>
+      <div class="about-item">
+        <h4>Fossil Record</h4>
+        <p>Thousands of fossils document the transformations in our lineage. Each discovery adds pieces to the complex puzzle of human origins.</p>
+      </div>
+      <div class="about-item">
+        <h4>Behavioral Evolution</h4>
+        <p>The development of symbolic thinking, language, and culture represents perhaps the most significant leap in human evolution, enabling cumulative knowledge across generations.</p>
+      </div>
+      <div class="about-item">
+        <h4>Ongoing Research</h4>
+        <p>Paleoanthropology continues to reshape our understanding. New species are still being discovered, and ancient DNA analysis is revealing unexpected connections.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-brand">Human Evolution Journey</span>
+  <p>An educational exploration of 7 million years of human prehistory.</p>
+  <p style="margin-top:0.5rem;font-size:0.7rem">Built for learning · Data based on current scientific consensus</p>
+</footer>
+
+<!-- DETAIL PANEL -->
+<div class="detail-overlay" id="detail-overlay" onclick="closeDetail(event)">
+  <div class="detail-panel" id="detail-panel">
+    <button class="detail-close" onclick="closeDetail()">×</button>
+    <div id="detail-content"></div>
+  </div>
+</div>
+
+<!-- FOSSIL MODAL -->
+<div class="fossil-modal" id="fossil-modal" onclick="closeFossil(event)">
+  <div class="fossil-modal-inner">
+    <button class="fossil-modal-close" onclick="closeFossil()">×</button>
+    <div id="fossil-content"></div>
+  </div>
+</div>
+
+<script>
+// ─── DATA ───────────────────────────────────────────────
+const species = [
+  {
+    id:'sahel',
+    name:'Sahelanthropus tchadensis',
+    shortName:'Sahelanthropus',
+    period:'7–6 MYA',
+    mya:7,
+    brainCC:'320–380 cc',
+    height:'~1.2 m',
+    tags:['Earliest ancestor','Bipedal hints','Chad, Africa'],
+    desc:'One of the oldest known hominins, discovered in Chad in 2001. This ancient creature had a mix of human and ape features, including small canine teeth and a possible bipedal posture.',
+    brainScore:5,heightScore:30,toolScore:0,
+    diet:'Fruits & plants',toolUse:'None',habitat:'Forest/Savanna edge',
+    facts:[
+      'Discovered in the Djurab Desert of Chad by Michel Brunet\'s team in 2001.',
+      'The skull, nicknamed "Toumaï" (meaning "hope of life" in the Goran language), shows a mix of primitive and evolved features.',
+      'Its small canine teeth suggest it may have been more human-like than contemporary apes.',
+      'The foramen magnum position suggests some degree of upright walking.'
+    ],
+    skullStyle:'primitive'
+  },
+  {
+    id:'ardi',
+    name:'Ardipithecus ramidus',
+    shortName:'Ardipithecus',
+    period:'4.4 MYA',
+    mya:4.4,
+    brainCC:'~300–350 cc',
+    height:'~1.2 m',
+    tags:['Woodland walker','Flexible hand','Ethiopia'],
+    desc:'A fascinating transitional species with both tree-climbing and upright walking abilities. "Ardi," the most complete specimen, revealed a creature very different from what scientists expected.',
+    brainScore:6,heightScore:32,toolScore:0,
+    diet:'Omnivore',toolUse:'None known',habitat:'Woodland',
+    facts:[
+      'The famous partial skeleton "Ardi" (ARA-VP-6/500) was discovered in Ethiopia and is 4.4 million years old.',
+      'Despite being bipedal on the ground, Ardi retained grasping feet suitable for tree climbing.',
+      'Contradicted the earlier assumption that human ancestors went through a knuckle-walking phase.',
+      'Males and females were similarly sized, suggesting reduced male aggression compared to modern apes.'
+    ],
+    skullStyle:'primitive'
+  },
+  {
+    id:'australo',
+    name:'Australopithecus afarensis',
+    shortName:'Australopithecus',
+    period:'3.9–2.9 MYA',
+    mya:3.9,
+    brainCC:'380–430 cc',
+    height:'1.0–1.5 m',
+    tags:['Lucy','Upright walker','East Africa'],
+    desc:'Made famous by "Lucy," this species was a confirmed biped with a small brain. Their footprints, preserved in volcanic ash at Laetoli, remain one of the most iconic discoveries in paleoanthropology.',
+    brainScore:12,heightScore:40,toolScore:2,
+    diet:'Omnivore (plants, seeds, occasional meat)',toolUse:'Possible stone tools',habitat:'Savanna & woodland',
+    facts:[
+      'The famous specimen AL 288-1, nicknamed "Lucy," was discovered in Ethiopia in 1974 by Donald Johanson.',
+      'The Laetoli footprints (Tanzania, ~3.6 MYA) definitively prove bipedal walking in this species.',
+      'Had a brain only about 1/3 the size of a modern human\'s but walked fully upright.',
+      'Strong sexual dimorphism — males were significantly larger than females.',
+      'Recent finds suggest they may have used simple stone tools to process food.'
+    ],
+    skullStyle:'archaic'
+  },
+  {
+    id:'habilis',
+    name:'Homo habilis',
+    shortName:'Homo habilis',
+    period:'2.4–1.4 MYA',
+    mya:2.4,
+    brainCC:'510–600 cc',
+    height:'1.0–1.3 m',
+    tags:['First Homo','Stone tools','East Africa'],
+    desc:'The "handy man" — one of the earliest members of our genus, associated with the Oldowan stone tool industry. Their larger brains enabled more complex behavior and diet.',
+    brainScore:25,heightScore:38,toolScore:40,
+    diet:'Omnivore with more meat',toolUse:'Oldowan stone tools',habitat:'Open savanna',
+    facts:[
+      'First described by Louis and Mary Leakey in 1964, based on fossils from Olduvai Gorge, Tanzania.',
+      'Associated with the Oldowan tool culture — simple stone flakes used for cutting meat and marrow.',
+      'Had a significantly larger brain than Australopithecus, enabling more complex cognition.',
+      'Some researchers debate whether H. habilis truly belongs to the genus Homo.',
+      'Coexisted with Paranthropus boisei, a robust, plant-eating cousin.'
+    ],
+    skullStyle:'early-homo'
+  },
+  {
+    id:'erectus',
+    name:'Homo erectus',
+    shortName:'Homo erectus',
+    period:'1.9 MYA–110,000 BP',
+    mya:1.9,
+    brainCC:'600–1100 cc',
+    height:'1.5–1.8 m',
+    tags:['First migrant','Used fire','Africa to Asia'],
+    desc:'The great explorer — the first hominin to leave Africa and spread across much of the Old World. They mastered fire, created sophisticated Acheulean hand axes, and survived for nearly 2 million years.',
+    brainScore:55,heightScore:70,toolScore:65,
+    diet:'Omnivore, hunter-gatherer',toolUse:'Acheulean hand axes, fire',habitat:'Diverse — forest to savanna',
+    facts:[
+      'First hominin to leave Africa, spreading to Georgia, China, Indonesia, and possibly Europe.',
+      'The "Java Man" (discovered 1891) and "Peking Man" are famous H. erectus specimens.',
+      'Evidence suggests they controlled fire at Gesher Benot Ya\'aqov, Israel, ~790,000 years ago.',
+      'Their Acheulean stone tools were far more sophisticated than earlier Oldowan tools.',
+      'Survived until approximately 117,000 years ago on the island of Java.',
+      'Possible ancestor of both Neanderthals and modern humans.'
+    ],
+    skullStyle:'homo-erectus'
+  },
+  {
+    id:'neander',
+    name:'Homo neanderthalensis',
+    shortName:'Neanderthals',
+    period:'400,000–40,000 BP',
+    mya:0.4,
+    brainCC:'1200–1750 cc',
+    height:'1.5–1.7 m',
+    tags:['Cold adapted','Buried dead','Europe & Asia'],
+    desc:'Our closest extinct relatives, Neanderthals were sophisticated humans adapted to cold climates. They buried their dead, made complex tools, and interbred with Homo sapiens — their DNA lives on in us.',
+    brainScore:88,heightScore:65,toolScore:80,
+    diet:'Apex predator, meat-heavy',toolUse:'Mousterian tools, possible art',habitat:'Cold tundra & woodland',
+    facts:[
+      'Had brains as large as or larger than modern humans, suggesting high intelligence.',
+      'DNA analysis shows that modern non-African humans carry 1–4% Neanderthal DNA.',
+      'Buried their dead, possibly with flowers — suggesting ritual behavior.',
+      'Crafted sophisticated Mousterian stone tools and possibly jewelry.',
+      'Disappeared ~40,000 years ago, possibly due to competition with H. sapiens and climate change.',
+      'Genetic evidence suggests multiple interbreeding events with modern humans.'
+    ],
+    skullStyle:'neanderthal'
+  },
+  {
+    id:'sapiens',
+    name:'Homo sapiens',
+    shortName:'Homo sapiens',
+    period:'300,000 BP–Present',
+    mya:0.3,
+    brainCC:'1200–1400 cc',
+    height:'1.5–1.9 m',
+    tags:['Modern humans','Language','Global spread'],
+    desc:'Us. Anatomically modern humans emerged in Africa and went on to inhabit every continent. Our capacity for abstract thought, language, art, and culture has no parallel in the animal kingdom.',
+    brainScore:100,heightScore:75,toolScore:100,
+    diet:'Highly varied omnivore',toolUse:'All technologies',habitat:'All environments on Earth',
+    facts:[
+      'Emerged in Africa approximately 300,000 years ago, with key fossils found at Jebel Irhoud, Morocco.',
+      'The only hominin species alive today, having spread to every continent including Antarctica.',
+      'Developed language, art, music, and complex social structures unlike any other species.',
+      'The agricultural revolution ~10,000 years ago fundamentally changed human societies.',
+      'Responsible for the Holocene extinction — driving many large animal species to extinction.',
+      'Our genetic diversity is remarkably low, suggesting a population bottleneck ~70,000 years ago.'
+    ],
+    skullStyle:'modern'
+  }
+];
+
+const milestones = [
+  {icon:'🦶',year:'~4 million years ago',name:'Walking Upright',desc:'Bipedalism freed the hands for carrying, tool use, and eventually fine manipulation. Walking on two legs was one of the first major adaptations that set our lineage apart.',fact:'Walking upright uses 75% less energy than knuckle-walking, giving early hominins a major survival advantage.'},
+  {icon:'🪨',year:'~3.3 million years ago',name:'Tool Making',desc:'The oldest known stone tools, found at Lomekwi 3 in Kenya, predate even the genus Homo. Tool making required forward planning and complex hand-eye coordination.',fact:'The brain areas for tool use and language overlap, suggesting they co-evolved together.'},
+  {icon:'🔥',year:'~1 million years ago',name:'Fire Control',desc:'Controlled fire transformed human evolution — enabling cooking (making food more caloric), warmth in cold climates, protection from predators, and social bonding around hearths.',fact:'Cooking may have driven the rapid expansion of the human brain by unlocking more energy from food.'},
+  {icon:'🗣️',year:'~200,000 years ago',name:'Language',desc:'Complex spoken language allowed the transmission of detailed knowledge, abstract concepts, and cultural innovations across generations — creating cumulative culture.',fact:'The FOXP2 gene, critical for speech, shows signs of strong selection in the human lineage.'},
+  {icon:'🎨',year:'~100,000 years ago',name:'Art & Symbolism',desc:'Shell beads, ochre engravings, and cave paintings mark the emergence of symbolic thinking — the ability to represent the world through symbols and shared meaning.',fact:'The Blombos Cave engravings in South Africa (~75,000 years old) are among the earliest known art.'},
+  {icon:'🌾',year:'~10,000 years ago',name:'Agriculture',desc:'The Neolithic Revolution — independently developed in multiple regions — fundamentally transformed human life. Growing food enabled larger settlements, specialization, and eventually civilization.',fact:'The transition to farming was initially associated with shorter lifespans and more disease, but enabled exponential population growth.'}
+];
+
+const fossils = [
+  {name:'Lucy',location:'Hadar, Ethiopia',age:'3.2 million years',species:'Australopithecus afarensis',discovered:1974,desc:'The most famous early hominin fossil. This 40% complete skeleton revolutionized understanding of bipedalism, showing that upright walking preceded brain enlargement.',style:'small-skull'},
+  {name:'Turkana Boy',location:'Lake Turkana, Kenya',age:'1.5 million years',species:'Homo erectus',discovered:1984,desc:'The most complete Homo erectus skeleton ever found. This young male would have grown to about 1.85 m tall, very similar in body proportions to modern humans.',style:'homo-erectus'},
+  {name:'Neanderthal 1',location:'Neander Valley, Germany',age:'40,000 years',species:'Homo neanderthalensis',discovered:1856,desc:'The type specimen that named the Neanderthals. Its discovery in 1856 launched the science of paleoanthropology and started debates about human evolution.',style:'neanderthal'},
+  {name:'Taung Child',location:'Taung, South Africa',age:'2.8 million years',species:'Australopithecus africanus',discovered:1924,desc:'The first australopithecine ever found. Discovered by Raymond Dart, this child\'s skull proved that human ancestors lived in Africa long before fossils from Asia were known.',style:'archaic'},
+  {name:'Toumaï',location:'Djurab Desert, Chad',age:'6.5–7 million years',species:'Sahelanthropus tchadensis',discovered:2001,desc:'One of the oldest known hominins. The skull\'s features suggest it may have walked upright, potentially making it one of the earliest members of the human lineage.',style:'primitive'},
+  {name:'Homo naledi',location:'Rising Star Cave, South Africa',age:'~335,000 years',species:'Homo naledi',discovered:2013,desc:'A remarkable discovery from a nearly inaccessible cave. Had a tiny brain but human-like hands and feet. Possibly deliberate deposition of the dead.',style:'archaic'},
+  {name:'Flores Man',location:'Flores Island, Indonesia',age:'~100,000 years',species:'Homo floresiensis',discovered:2003,desc:'The "Hobbit" — a tiny hominin only 1.1 m tall with a grapefruit-sized brain. Survived until ~50,000 years ago, possibly alongside modern humans.',style:'small-skull'},
+  {name:'Cro-Magnon 1',location:'Dordogne, France',age:'~32,000 years',species:'Homo sapiens',discovered:1868,desc:'One of the first anatomically modern humans found in Europe. The Cro-Magnons created the stunning cave paintings of Lascaux and Altamira.',style:'modern'}
+];
+
+// ─── SKULL SVG GENERATOR ──────────────────────────────
+function getSkullSVG(style, size=100) {
+  const svgs = {
+    primitive: `<svg viewBox="0 0 100 110" style="width:${size}px;height:${size}px"><defs><radialGradient id="g${style}${size}" cx="35%" cy="25%" r="75%"><stop offset="0%" stop-color="#c4a265"/><stop offset="100%" stop-color="#5a3d1a"/></radialGradient></defs><ellipse cx="50" cy="42" rx="32" ry="35" fill="url(#g${style}${size})"/><path d="M22 55 Q18 70 22 80 Q28 90 50 94 Q72 90 78 80 Q82 70 78 55" fill="url(#g${style}${size})"/><ellipse cx="34" cy="52" rx="9" ry="7" fill="#1a1208"/><ellipse cx="66" cy="52" rx="9" ry="7" fill="#1a1208"/><path d="M42 65 Q50 62 58 65" fill="none" stroke="#8b6b3d" stroke-width="2"/><path d="M18 48 Q50 38 82 48" fill="none" stroke="#8b6b3d" stroke-width="2.5"/></svg>`,
+    archaic: `<svg viewBox="0 0 100 110" style="width:${size}px;height:${size}px"><defs><radialGradient id="g${style}${size}" cx="35%" cy="25%" r="75%"><stop offset="0%" stop-color="#c8a870"/><stop offset="100%" stop-color="#5a3d1a"/></radialGradient></defs><ellipse cx="50" cy="40" rx="33" ry="36" fill="url(#g${style}${size})"/><path d="M20 55 Q16 68 20 78 Q27 90 50 93 Q73 90 80 78 Q84 68 80 55" fill="url(#g${style}${size})"/><ellipse cx="34" cy="51" rx="10" ry="8" fill="#1a1208"/><ellipse cx="66" cy="51" rx="10" ry="8" fill="#1a1208"/><path d="M43 65 Q50 61 57 65" fill="none" stroke="#8b6b3d" stroke-width="2"/><path d="M20 47 Q50 37 80 47" fill="none" stroke="#8b6b3d" stroke-width="2"/></svg>`,
+    'early-homo': `<svg viewBox="0 0 100 110" style="width:${size}px;height:${size}px"><defs><radialGradient id="g${style}${size}" cx="35%" cy="25%" r="75%"><stop offset="0%" stop-color="#d4b07a"/><stop offset="100%" stop-color="#6a4d2a"/></radialGradient></defs><ellipse cx="50" cy="38" rx="34" ry="36" fill="url(#g${style}${size})"/><path d="M19 53 Q15 67 20 78 Q28 92 50 95 Q72 92 80 78 Q85 67 81 53" fill="url(#g${style}${size})"/><ellipse cx="33" cy="50" rx="11" ry="8" fill="#1a1208"/><ellipse cx="67" cy="50" rx="11" ry="8" fill="#1a1208"/><path d="M42 64 Q50 60 58 64" fill="none" stroke="#8b6b3d" stroke-width="1.5"/></svg>`,
+    'homo-erectus': `<svg viewBox="0 0 100 115" style="width:${size}px;height:${size}px"><defs><radialGradient id="g${style}${size}" cx="35%" cy="25%" r="75%"><stop offset="0%" stop-color="#dab87a"/><stop offset="100%" stop-color="#6a4d2a"/></radialGradient></defs><ellipse cx="50" cy="36" rx="35" ry="34" fill="url(#g${style}${size})"/><path d="M18 52 Q14 67 19 79 Q27 94 50 97 Q73 94 81 79 Q86 67 82 52" fill="url(#g${style}${size})"/><ellipse cx="33" cy="49" rx="11" ry="8" fill="#1a1208"/><ellipse cx="67" cy="49" rx="11" ry="8" fill="#1a1208"/><path d="M43 65 Q50 62 57 65" fill="none" stroke="#8b6b3d" stroke-width="1.5"/><path d="M20 46 Q50 36 80 46" fill="none" stroke="#8b6b3d" stroke-width="2"/></svg>`,
+    neanderthal: `<svg viewBox="0 0 100 115" style="width:${size}px;height:${size}px"><defs><radialGradient id="g${style}${size}" cx="35%" cy="25%" r="75%"><stop offset="0%" stop-color="#dfc082"/><stop offset="100%" stop-color="#7a5535"/></radialGradient></defs><ellipse cx="50" cy="35" rx="36" ry="33" fill="url(#g${style}${size})"/><path d="M17 50 Q12 67 18 80 Q27 96 50 99 Q73 96 82 80 Q88 67 83 50" fill="url(#g${style}${size})"/><ellipse cx="33" cy="48" rx="11" ry="9" fill="#1a1208"/><ellipse cx="67" cy="48" rx="11" ry="9" fill="#1a1208"/><path d="M42 63 Q50 59 58 63" fill="none" stroke="#8b6b3d" stroke-width="1.5"/><path d="M18 46 Q50 34 82 46" fill="none" stroke="#8b6b3d" stroke-width="2.5"/></svg>`,
+    modern: `<svg viewBox="0 0 100 115" style="width:${size}px;height:${size}px"><defs><radialGradient id="g${style}${size}" cx="35%" cy="25%" r="75%"><stop offset="0%" stop-color="#e8d5b0"/><stop offset="100%" stop-color="#8b6b3d"/></radialGradient></defs><ellipse cx="50" cy="33" rx="37" ry="35" fill="url(#g${style}${size})"/><path d="M16 52 Q12 68 18 80 Q28 97 50 100 Q72 97 82 80 Q88 68 84 52" fill="url(#g${style}${size})"/><ellipse cx="33" cy="50" rx="11" ry="9" fill="#1a1208"/><ellipse cx="67" cy="50" rx="11" ry="9" fill="#1a1208"/><path d="M44 65 Q50 62 56 65" fill="none" stroke="#8b6b3d" stroke-width="1.5"/><path d="M100 28 Q55 20 0 30" fill="none" stroke="none"/></svg>`,
+    'small-skull': `<svg viewBox="0 0 100 110" style="width:${size}px;height:${size}px"><defs><radialGradient id="g${style}${size}" cx="35%" cy="25%" r="75%"><stop offset="0%" stop-color="#c4a265"/><stop offset="100%" stop-color="#5a3d1a"/></radialGradient></defs><ellipse cx="50" cy="43" rx="30" ry="32" fill="url(#g${style}${size})"/><path d="M23 57 Q19 70 23 80 Q30 90 50 93 Q70 90 77 80 Q81 70 77 57" fill="url(#g${style}${size})"/><ellipse cx="35" cy="53" rx="9" ry="7" fill="#1a1208"/><ellipse cx="65" cy="53" rx="9" ry="7" fill="#1a1208"/><path d="M43 67 Q50 64 57 67" fill="none" stroke="#8b6b3d" stroke-width="1.5"/></svg>`
+  };
+  return svgs[style] || svgs['modern'];
+}
+
+// ─── RENDER TIMELINE ─────────────────────────────────
+function renderTimeline() {
+  const container = document.getElementById('timeline-items');
+  species.forEach((s,i) => {
+    const item = document.createElement('div');
+    item.className = 'tl-item';
+    const card = `<div class="tl-card" onclick="openDetail('${s.id}')">
+      <div class="tl-card-inner">
+        <div style="display:flex;align-items:center;gap:0.75rem;${i%2===0?'flex-direction:row-reverse':''};margin-bottom:0.75rem">
+          ${getSkullSVG(s.skullStyle, 52)}
+          <div>
+            <div class="tl-species">${s.shortName}</div>
+            <div class="tl-period">${s.period}</div>
+          </div>
+        </div>
+        <div class="tl-desc">${s.desc.substring(0,140)}…</div>
+        <div class="tl-tags">${s.tags.map(t=>`<span class="tl-tag">${t}</span>`).join('')}</div>
+      </div>
+    </div>`;
+    const center = `<div class="tl-center">
+      <div class="tl-dot" onclick="openDetail('${s.id}')"></div>
+      <div class="tl-time">${s.period}</div>
+    </div>`;
+    const empty = `<div class="tl-empty"></div>`;
+    if(i%2===0) item.innerHTML = card + center + empty;
+    else item.innerHTML = empty + center + card;
+    container.appendChild(item);
+  });
+}
+
+// ─── INTERSECTION OBSERVER ───────────────────────────
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting) e.target.classList.add('visible');
+  });
+},{threshold:0.15});
+
+function observeAll() {
+  document.querySelectorAll('.tl-item,.reveal').forEach(el => obs.observe(el));
+}
+
+// ─── DETAIL PANEL ───────────────────────────────────
+function openDetail(id) {
+  const s = species.find(x=>x.id===id);
+  if(!s) return;
+  document.getElementById('detail-content').innerHTML = `
+    <div style="display:flex;gap:1.5rem;align-items:flex-start;margin-bottom:1.5rem;flex-wrap:wrap">
+      ${getSkullSVG(s.skullStyle, 100)}
+      <div>
+        <div class="detail-species">${s.name}</div>
+        <div class="detail-period">${s.period}</div>
+      </div>
+    </div>
+    <div class="detail-grid">
+      <div class="detail-stat"><div class="val">${s.brainCC}</div><div class="lbl">Brain Size</div></div>
+      <div class="detail-stat"><div class="val">${s.height}</div><div class="lbl">Height</div></div>
+      <div class="detail-stat"><div class="val">${s.period.split('–')[0]}</div><div class="lbl">First Appeared</div></div>
+    </div>
+    <p class="detail-body">${s.desc}</p>
+    <div class="detail-grid" style="grid-template-columns:1fr 1fr">
+      <div class="detail-stat"><div class="val" style="font-size:1rem">${s.diet}</div><div class="lbl">Diet</div></div>
+      <div class="detail-stat"><div class="val" style="font-size:1rem">${s.toolUse}</div><div class="lbl">Tools</div></div>
+    </div>
+    <div class="detail-facts" style="margin-top:1.5rem">
+      <h4>Key Facts</h4>
+      ${s.facts.map(f=>`<div class="detail-fact">${f}</div>`).join('')}
+    </div>
+  `;
+  document.getElementById('detail-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeDetail(e) {
+  if(e && e.target !== document.getElementById('detail-overlay')) return;
+  document.getElementById('detail-overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+// ─── COMPARISON ─────────────────────────────────────
+function renderSelects() {
+  ['select-a','select-b'].forEach((id,i) => {
+    const sel = document.getElementById(id);
+    species.forEach((s,j) => {
+      const opt = document.createElement('option');
+      opt.value = s.id;
+      opt.textContent = s.shortName;
+      if(j === (i===0 ? 4 : 6)) opt.selected = true;
+      sel.appendChild(opt);
+    });
+  });
+  updateComparison();
+}
+
+function updateComparison() {
+  const a = species.find(x=>x.id===document.getElementById('select-a').value);
+  const b = species.find(x=>x.id===document.getElementById('select-b').value);
+  const panel = document.getElementById('compare-panels');
+  panel.innerHTML = [a,b].map(s => `
+    <div class="compare-panel">
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem">
+        ${getSkullSVG(s.skullStyle, 64)}
+        <div>
+          <div class="compare-name">${s.shortName}</div>
+          <div class="compare-period">${s.period}</div>
+        </div>
+      </div>
+      ${barRow('Brain Size',s.brainScore,'% of modern human')}
+      ${barRow('Height',s.heightScore,'relative')}
+      ${barRow('Tool Use',s.toolScore,'complexity')}
+      <div class="compare-row"><span class="label">Diet</span><span class="value">${s.diet}</span></div>
+      <div class="compare-row"><span class="label">Habitat</span><span class="value">${s.habitat}</span></div>
+      <div class="compare-row"><span class="label">Brain</span><span class="value">${s.brainCC}</span></div>
+    </div>
+  `).join('');
+  // Animate bars
+  setTimeout(() => {
+    document.querySelectorAll('.compare-bar-fill').forEach(bar => {
+      bar.style.width = bar.dataset.w + '%';
+    });
+  }, 100);
+}
+
+function barRow(name, score, unit) {
+  return `<div class="compare-bar-wrap">
+    <div class="compare-bar-label">
+      <span class="name">${name}</span>
+      <span class="val">${score}${unit==='%'?'%':''}</span>
+    </div>
+    <div class="compare-bar-track">
+      <div class="compare-bar-fill" data-w="${score}" style="width:0%"></div>
+    </div>
+  </div>`;
+}
+
+// ─── MIGRATION MAP ───────────────────────────────────
+function showRoute(type, btn) {
+  document.querySelectorAll('.map-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const routes = document.querySelectorAll('.migration-route');
+  const markers = document.querySelectorAll('.dest-marker');
+  routes.forEach(r => {
+    r.style.opacity = (type==='all' || r.classList.contains('route-'+type)) ? '0.9' : '0.1';
+  });
+  markers.forEach(m => {
+    m.style.opacity = (type==='all' || m.classList.contains('route-'+type)) ? '1' : '0.15';
+  });
+}
+
+// ─── MILESTONES ──────────────────────────────────────
+function renderMilestones() {
+  const grid = document.getElementById('milestones-grid');
+  milestones.forEach((m,i) => {
+    const card = document.createElement('div');
+    card.className = 'milestone-card reveal';
+    card.innerHTML = `
+      <div class="milestone-icon">${m.icon}</div>
+      <div class="milestone-year">${m.year}</div>
+      <div class="milestone-name">${m.name}</div>
+      <div class="milestone-desc">${m.desc}</div>
+      <div class="milestone-fact">${m.fact}</div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+// ─── FOSSILS ─────────────────────────────────────────
+function renderFossils() {
+  const grid = document.getElementById('fossils-grid');
+  fossils.forEach(f => {
+    const card = document.createElement('div');
+    card.className = 'fossil-card reveal';
+    card.innerHTML = `
+      <div class="fossil-img">
+        ${getSkullSVG(f.style, 80)}
+        <div class="fossil-overlay">View Details</div>
+      </div>
+      <div class="fossil-info">
+        <div class="fossil-name">${f.name}</div>
+        <div class="fossil-location">📍 ${f.location}</div>
+        <div class="fossil-age">${f.age}</div>
+      </div>
+    `;
+    card.onclick = () => openFossil(f);
+    grid.appendChild(card);
+  });
+}
+
+function openFossil(f) {
+  document.getElementById('fossil-content').innerHTML = `
+    <div style="text-align:center;margin-bottom:1.5rem">
+      ${getSkullSVG(f.style, 120)}
+    </div>
+    <div class="fm-name">${f.name}</div>
+    <div class="fm-meta">
+      <span><strong>Species:</strong> ${f.species}</span>
+      <span><strong>Age:</strong> ${f.age}</span>
+      <span><strong>Discovered:</strong> ${f.discovered}</span>
+    </div>
+    <div style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem">📍 ${f.location}</div>
+    <div class="fm-desc">${f.desc}</div>
+  `;
+  document.getElementById('fossil-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeFossil(e) {
+  if(e && e.target !== document.getElementById('fossil-modal')) return;
+  document.getElementById('fossil-modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+// ─── PARTICLES ───────────────────────────────────────
+function createParticles() {
+  const container = document.getElementById('particles');
+  for(let i=0;i<40;i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.cssText = `
+      left:${Math.random()*100}%;
+      animation-duration:${8+Math.random()*12}s;
+      animation-delay:${Math.random()*8}s;
+      width:${1+Math.random()*2}px;
+      height:${1+Math.random()*2}px;
+      opacity:${0.3+Math.random()*0.4};
+    `;
+    container.appendChild(p);
+  }
+}
+
+// ─── ACTIVE NAV ──────────────────────────────────────
+function updateActiveNav() {
+  const sections = ['hero','timeline','migration','fossils','about'];
+  const links = document.querySelectorAll('.nav-links a');
+  sections.forEach((id,i) => {
+    const el = document.getElementById(id);
+    if(!el) return;
+    const rect = el.getBoundingClientRect();
+    if(rect.top <= 100 && rect.bottom > 100) {
+      links.forEach(l=>l.classList.remove('active'));
+      links[i] && links[i].classList.add('active');
+    }
+  });
+}
+
+// ─── INIT ────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  createParticles();
+  renderTimeline();
+  renderSelects();
+  renderMilestones();
+  renderFossils();
+  observeAll();
+});
+
+window.addEventListener('scroll', updateActiveNav);
+
+// Keyboard close
+document.addEventListener('keydown', e => {
+  if(e.key==='Escape') {
+    closeDetail();
+    closeFossil();
+  }
+});
+</script>
+</body>
+</html>
